@@ -1,0 +1,146 @@
+.details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.details-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.details-card:hover {
+  transform: translateY(-4px);
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pokemon-image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.pokemon-id {
+  background: #f6f6f6;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.info-section {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.95rem;
+}
+
+.types-section,
+.abilities-section,
+.stats-section {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.types,
+.abilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.type-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 0.85rem;
+}
+
+.ability-badge {
+  background: #e9ecef;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+.stats {
+  margin-top: 10px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.stat-name {
+  flex: 0 0 90px;
+  text-transform: capitalize;
+}
+
+.stat-bar {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  background: #ffcb05;
+  border-radius: 6px 0 0 6px;
+}
+
+.stat-value {
+  width: 30px;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+/* Type color badges (based on PokeAPI colors) */
+.type-badge.grass { background: #78C850; }
+.type-badge.fire { background: #F08030; }
+.type-badge.water { background: #6890F0; }
+.type-badge.bug { background: #A8B820; }
+.type-badge.normal { background: #A8A878; }
+.type-badge.poison { background: #A040A0; }
+.type-badge.electric { background: #F8D030; color: #333; }
+.type-badge.ground { background: #E0C068; color: #333; }
+.type-badge.fairy { background: #EE99AC; }
+.type-badge.fighting { background: #C03028; }
+.type-badge.psychic { background: #F85888; }
+.type-badge.rock { background: #B8A038; color: #333; }
+.type-badge.ghost { background: #705898; color: #fff; }
+.type-badge.ice { background: #98D8D8; color: #333; }
+.type-badge.dragon { background: #7038F8; }
+.type-badge.dark { background: #705848; color: #fff; }
+.type-badge.steel { background: #B8B8D0; color: #333; }
+.type-badge.flying { background: #A890F0; }

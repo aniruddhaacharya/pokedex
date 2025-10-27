@@ -4,6 +4,7 @@ import { fetchPokemon } from "../api/pokemon";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorView from "../components/ErrorView";
 import type { Pokemon } from "../types/pokemon";
+import '../styles/pokemon-details.css'
 
 export default function PokemonDetails() {
   const { name } = useParams<{ name: string }>();
@@ -24,7 +25,6 @@ export default function PokemonDetails() {
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorView message={error} onRetry={() => navigate(0)} />;
-
   if (!pokemon) return null;
 
   const displayName = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
@@ -32,37 +32,65 @@ export default function PokemonDetails() {
     pokemon.stats.find((s) => s.stat.name.toLowerCase() === statName)?.base_stat ?? "-";
 
   return (
-    <div>
-      <button onClick={() => navigate(-1)}>← Back</button>
-      <h2>{displayName} (#{pokemon.id})</h2>
-      <img src={pokemon.sprites.front_default ?? ""} alt={`${displayName} sprite`} />
-      <p>Height: {pokemon.height} — Weight: {pokemon.weight}</p>
+    <div className="details-container">
+      <button className="back-btn" onClick={() => navigate(-1)}>← Back</button>
 
-      <div>
-        <h3>Types</h3>
-        <div style={{ display: "flex", gap: 8 }}>
-          {pokemon.types.map((t) => (
-            <span key={t.slot} className="badge">{t.type.name}</span>
-          ))}
+      <div className="details-card">
+        <div className="header">
+          <img
+            src={pokemon.sprites.front_default ?? ""}
+            alt={displayName}
+            className="pokemon-image"
+          />
+          <h2>{displayName}</h2>
+          <span className="pokemon-id">{pokemon.id}</span>
         </div>
-      </div>
 
-      <div>
-        <h3>Abilities</h3>
-        <div style={{ display: "flex", gap: 8 }}>
-          {pokemon.abilities.map((a) => (
-            <span key={a.ability.name} className="badge">{a.ability.name}{a.is_hidden ? " (hidden)" : ""}</span>
-          ))}
+        <div className="info-section">
+          <p><strong>Height:</strong> {pokemon.height}</p>
+          <p><strong>Weight:</strong> {pokemon.weight}</p>
         </div>
-      </div>
 
-      <div>
-        <h3>Key stats</h3>
-        <ul>
-          <li>HP: {getStat("hp")}</li>
-          <li>Attack: {getStat("attack")}</li>
-          <li>Defense: {getStat("defense")}</li>
-        </ul>
+        <div className="types-section">
+          <h3>Types</h3>
+          <div className="types">
+            {pokemon.types.map((t) => (
+              <span key={t.slot} className={`type-badge ${t.type.name}`}>
+                {t.type.name}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="abilities-section">
+          <h3>Abilities</h3>
+          <div className="abilities">
+            {pokemon.abilities.map((a) => (
+              <span key={a.ability.name} className="ability-badge">
+                {a.ability.name}
+                {a.is_hidden ? " (Hidden)" : ""}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="stats-section">
+          <h3>Stats</h3>
+          <div className="stats">
+            {pokemon.stats.map((s) => (
+              <div key={s.stat.name} className="stat-row">
+                <span className="stat-name">{s.stat.name}</span>
+                <div className="stat-bar">
+                  <div
+                    className="stat-fill"
+                    style={{ width: `${(s.base_stat / 200) * 100}%` }}
+                  ></div>
+                </div>
+                <span className="stat-value">{s.base_stat}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
