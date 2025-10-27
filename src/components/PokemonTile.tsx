@@ -9,7 +9,6 @@ interface Props {
 const PokemonTile = React.memo(({ name, image }: Props) => {
   const displayName = name
     .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
 
   return (
@@ -22,7 +21,7 @@ const PokemonTile = React.memo(({ name, image }: Props) => {
           width={96}
           height={96}
         />
-        <div>{displayName}</div>
+        <div>{displayName.toUpperCase()}</div>
       </div>
     </Link>
   );
